@@ -23,10 +23,11 @@ print "Barra de proceso Inicial"
 for dirName, subdirList, fileList in os.walk(directorio_inicial, topdown=False):
 	print dirName
 	for elemento in tqdm(fileList):
+		elemento = dirName + os.sep + elemento
 		if os.path.isfile(elemento): # condicional para saber si es un archivo
 			archivo, extencion = os.path.splitext(elemento)
 			if extencion == ".jpg" or extencion == ".JPG":
-				filename = dirName + os.sep + elemento
+				filename = elemento
 				try:
 				    newfilename = os.path.splitext(filename)[0] + ".pdf"
 				    Image.open(filename).save(newfilename)
